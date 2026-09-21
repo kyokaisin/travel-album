@@ -1,5 +1,5 @@
 import {escapeHTML as h} from './core.mjs';
-const TILE_URL='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const MAP_STYLE='./map-style.json';
 export class AtlasMap {
   constructor(host,{stops=[],route=false,onSelect,onPick,fit=false}={}){
     this.host=host;this.stops=stops;
@@ -8,8 +8,14 @@ export class AtlasMap {
     const L=window.L;
     this.map=L.map(host.querySelector('.leaflet-canvas'),{minZoom:2,maxZoom:19,maxBounds:[[-85,-180],[85,180]],maxBoundsViscosity:1}).setView([23,15],2);
     this.map.zoomControl.setPosition('bottomright');
-    const layer=L.tileLayer(TILE_URL,{maxZoom:19,noWrap:true,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'}).addTo(this.map);
-    let failed=false;layer.on('tileerror',()=>{failed=true;host.querySelector('.tile-error').hidden=false;});layer.on('loading',()=>{failed=false;});layer.on('load',()=>{if(!failed)host.querySelector('.tile-error').hidden=true;});
+    this.loader=new AbortController();
+    fetch(MAP_STYLE,{signal:this.loader.signal}).then(r=>{if(!r.ok)throw Error('底图样式读取失败');return r.json();}).then(style=>{
+      if(!this.map)return;
+      this.basemap=L.maplibreGL({style,interactive:false,attribution:'<a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · &copy; <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="./OPENFREEMAP-STYLES-LICENSE.md">底图设计许可</a>'}).addTo(this.map);
+      const renderer=this.basemap.getMaplibreMap();
+      renderer.on('error',()=>{host.querySelector('.tile-error').hidden=false;});
+      renderer.on('idle',()=>{host.querySelector('.tile-error').hidden=true;});
+    }).catch(e=>{if(e.name!=='AbortError'&&this.map)host.querySelector('.tile-error').hidden=false;});
     if(route)for(let i=1;i<stops.length;i++){
       const a=stops[i-1],b=stops[i];let lng=b.lng;while(lng-a.lng>180)lng-=360;while(lng-a.lng< -180)lng+=360;
       const paths=[];
@@ -30,5 +36,5 @@ export class AtlasMap {
     if(fit)this.fit();
   }
   fit(stops=this.stops){if(this.map&&stops.length)this.map.fitBounds(stops.map(s=>[s.lat,s.lng]),{padding:[40,50],maxZoom:11});}
-  destroy(){this.events?.abort();this.observer?.disconnect();this.map?.remove();this.map=null;}
+  destroy(){this.loader?.abort();this.events?.abort();this.observer?.disconnect();this.map?.remove();this.map=null;}
 }

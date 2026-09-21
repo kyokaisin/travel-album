@@ -26,7 +26,7 @@
 5. 使用箭头调整旅行站点和照片顺序；第一张照片作为本站封面。
 6. 填写旅行日记、照片说明与拍摄日期。
 
-照片支持 JPEG、PNG、WebP，每张原图不超过 50 MB；相机 RAW 或 HEIC 请先导出为 JPEG。展示照片在浏览器中缩小至最长边 1800 像素，不保留原始 GPS 元数据。请另外保管原始照片。
+照片支持 JPEG、PNG、WebP，每张原图不超过 50 MB；相机 RAW 或 HEIC 请先导出为 JPEG。新选择的展示照片在浏览器中压缩至每张不超过 500,000 字节（500 KB），最长边不超过 1800 像素；细节复杂时会进一步降低质量或尺寸，不保留原始 GPS 元数据。请另外保管原始照片。
 
 ## 公开发布
 
@@ -68,7 +68,7 @@
 原图：https://commons.wikimedia.org/wiki/File:6617-6618_-_Vitznau_-_Vierwaldst%C3%A4ttersee.jpg
 许可：https://creativecommons.org/licenses/by-sa/2.5/
 
-地图：Leaflet 1.9.4（BSD-2-Clause）+ OpenStreetMap 标准瓦片，版权归 OpenStreetMap contributors。原 world.json 不再使用。
+地图：Leaflet + MapLibre GL，使用 OpenFreeMap Positron 矢量底图，地图数据来自 OpenStreetMap / OpenMapTiles；不显示海上边界圈。原 world.json 不再使用。
 城市搜索：Open-Meteo / GeoNames。
 
 ## 今后修改设计
