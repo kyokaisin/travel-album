@@ -4,7 +4,7 @@ export const PHOTO_NAME = /^photo-[0-9a-f-]{36}\.jpg$/;
 export const MAX_EXPORT_BYTES = 90 * 1024 * 1024;
 export const uid = () => crypto.randomUUID();
 export const escapeHTML = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export function emptyAlbum() { return {version:1,title:'海晨的旅行手账',updated:'',trips:[]}; }
+export function emptyAlbum() { return {version:1,title:'仓鼠旅行',updated:'',trips:[]}; }
 export function newTrip() { return {id:uid(),title:'',start:'',end:'',note:'',published:false,stops:[]}; }
 export function newStop(name='', lat=0, lng=0) {return {id:uid(),city:name,country:'',lat,lng,date:'',transport:'火车',note:'',photos:[]};}
 export function text(value, max=10000) {if(typeof value!=='string'||value.length>max)throw Error('文字内容格式不正确或过长');return value;}

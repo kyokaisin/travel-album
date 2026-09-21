@@ -4,19 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#235c49">
-  <meta name="description" content="海晨的旅行手账：在地图上翻阅旅行照片，沿着路线重温每一程。">
-  <title>Somewhere · 海晨的旅行手账</title>
+  <meta name="description" content="仓鼠旅行：在地图上翻阅旅行照片，沿着路线重温每一程。">
+  <title>仓鼠旅行</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./leaflet.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./custom.css">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="./leaflet.js"></script>
   <script type="module" src="./app.js"></script>
 </head>
 <body>
   <header class="header">
-    <a class="brand" href="#"><span class="brand-icon">◎</span><span>Somewhere<small>海晨的旅行手账</small></span></a>
-    <nav><a href="#" id="view-link">地图相册</a><a href="#edit" id="edit-link">整理相册 ↗</a></nav>
+    <a class="brand" href="#"><span class="brand-icon">◎</span><span>仓鼠旅行<small>把旅途收进相册</small></span></a>
+    <nav><a href="#" id="view-link">地图相册</a><a href="#edit" id="edit-link">整理相册</a></nav>
   </header>
   <main id="app" aria-live="polite"><p class="loading">正在翻开旅行手账…</p></main>
-  <footer><span>Somewhere · 海晨的旅行手账</span><a href="./GUIDE.md">使用说明</a></footer>
+  <footer><span>仓鼠旅行</span><a href="./GUIDE.md">使用说明</a></footer>
   <dialog id="modal"><button class="close" type="button" aria-label="关闭">×</button><div id="modal-body"></div></dialog>
   <div id="toast" role="status" hidden></div>
   <noscript>请在浏览器中允许 JavaScript，以浏览地图和照片。</noscript>

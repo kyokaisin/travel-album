@@ -1,6 +1,6 @@
 # 在 iPad 上使用旅行相册
 
-这个版本只使用 GitHub Pages。没有服务器账单、信用卡绑定、API 密钥或 ChatGPT 登录。
+这个版本只使用 GitHub Pages。没有服务器账单、信用卡绑定、API 密钥或 ChatGPT 登录。整理入口使用本机账号密码锁，不能代替服务器验证。
 
 ## 第一次启用网站
 
@@ -62,13 +62,13 @@
 
 ## 设计与素材
 
-风格沿用原版 Somewhere。首次发布自己的旅行后，示例自动消失。
+保留米白与深绿色界面。首次发布自己的旅行后，示例自动消失。
 
 示例照片：Andrew Bossi / Wikimedia Commons，CC BY-SA 2.5，已缩放并在页面展示时裁切。
 原图：https://commons.wikimedia.org/wiki/File:6617-6618_-_Vitznau_-_Vierwaldst%C3%A4ttersee.jpg
 许可：https://creativecommons.org/licenses/by-sa/2.5/
 
-世界地理数据：Natural Earth / datasets/geo-countries，简化为轻量底图；边界只作旅行展示。
+地图：Leaflet 1.9.4（BSD-2-Clause）+ OpenStreetMap 标准瓦片，版权归 OpenStreetMap contributors。原 world.json 不再使用。
 城市搜索：Open-Meteo / GeoNames。
 
 ## 今后修改设计
